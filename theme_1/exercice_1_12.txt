@@ -1,0 +1,4 @@
+La macro carre(x) remplace directement x*x dans le code. L’argument x est évalué plusieurs fois, ce qui peut causer des effets de bord si c’est quelque chose comme i++. Il n’y a pas de vérification de type et il n’y a pas de coût d’appel de fonction, mais c’est moins sûr.
+La fonction int carre(int x) évalue l’argument une seule fois, donc pas d’effets de bord. Le type est strict (doit être un int), il y a un petit coût d’appel de fonction mais c’est plus sûr et plus lisible.
+
+En résumé, la macro est rapide mais dangereuse, la fonction est sûre mais légèrement moins directe.

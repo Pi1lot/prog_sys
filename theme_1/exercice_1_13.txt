@@ -1,0 +1,3 @@
+Le problème vient du --n. Avec --n, tu diminues n avant de l’envoyer dans l’appel récursif, et ça change aussi n dans la fonction courante. Du coup la multiplication se fait avec la mauvaise valeur et la factorielle est fausse.
+
+La bonne façon, c’est de ne pas toucher à n et d’écrire factorielle(n - 1) à la place. Comme ça, chaque appel garde sa valeur de n et le calcul devient correct.

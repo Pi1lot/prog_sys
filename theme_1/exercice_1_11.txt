@@ -1,0 +1,7 @@
+Les parenthèses ne font pas parties de la marcro, cela ne marchera pas.
+
+#define carre(x) ((x) * (x))
+
+static inline int carre(int x) {
+    return x * x;
+}
