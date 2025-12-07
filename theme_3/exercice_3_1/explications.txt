@@ -1,0 +1,19 @@
+Le programme manipule deux entiers a et b, un tableau t[3] et un pointeur p. Les macros servent uniquement à afficher les adresses et les valeurs pointées. Le déroulement du programme provoque plusieurs situations valides puis plusieurs erreurs.
+
+Au début, p pointe vers b, puis a et b sont initialisés normalement. L’affichage est correct.
+
+Quand on exécute *p = 4, cela modifie simplement b, car p pointe encore vers lui. L’affichage reste valide.
+
+Lorsque p++ est exécuté, le pointeur n’est plus aligné sur une variable définie du programme. Il pointe vers une zone mémoire indéterminée située après b. L’affichage qui suit tente de lire cette zone et produit un comportement indéfini. Cette instruction introduit la première erreur logique : le programme lit des données qui ne correspondent plus à une variable valide.
+
+L’instruction (*p)++ modifie également une zone mémoire qui n’appartient à aucune variable déclarée. C’est un comportement indéfini supplémentaire, puisque le programme écrit dans une zone mémoire qui ne lui est pas destinée.
+
+Ensuite, p est mis à 0. Le pointeur devient NULL. L’affichage suivant tente de déréférencer ce pointeur, ce qui constitue une erreur grave : déréférencer un pointeur NULL provoque un comportement indéfini et en pratique un crash potentiel.
+
+Quand p est réaffecté à t, le pointeur redevient valide et pointe sur le tableau. Les modifications p[0] = 10 et p[1] = 11 sont correctes car elles se situent dans les limites du tableau.
+
+Lorsque p++ est exécuté, p pointe sur t[1], ce qui reste correct. L’écriture de *p et *(p+1) est également valide, puisqu’elle écrit dans t[1] puis t[2], les deux dernières cases du tableau.
+
+Le p++ suivant fait pointer p sur t[2], ce qui est encore valide. L’instruction p[0] = 20 modifie t[2] correctement. En revanche p[1] écrit une case mémoire située juste après la fin du tableau t. Cette écriture hors limites constitue un buffer overflow et entraîne un comportement indéfini.
+
+En résumé, le programme commence par des opérations valides, mais produit ensuite plusieurs erreurs : utilisation d’un pointeur après l’incrémentation qui le fait sortir de la zone des variables, déréférencement d’un pointeur NULL, et écriture en dehors des limites du tableau t. Toutes ces opérations relèvent du comportement indéfini en langage C.

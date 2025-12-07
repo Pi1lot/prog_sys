@@ -1,0 +1,11 @@
+Lorsqu’une structure est déclarée en langage C, chaque champ de cette structure est stocké à un certain décalage par rapport au début de la structure. 
+Cet emplacement dépend de l’ordre des champs et de leur type, ainsi que des règles d’alignement propres au compilateur et à l’architecture.
+
+Pour obtenir la valeur numérique de l’adresse relative d’un champ c dans une structure s, on peut utiliser l’opérateur `offsetof` défini dans `<stddef.h>`.
+Cette macro retourne un entier représentant le nombre d’octets entre le début de la structure et le champ spécifié.
+
+Par exemple, si l’on a `struct s { int a; char b; float c; };`, alors `offsetof(struct s, c)` donne la distance en octets entre le début de la structure et le champ `c`.
+Cette valeur est indépendante de l’adresse réelle de la variable et permet de calculer les décalages mémoire à l’intérieur de la structure.
+
+Autrement, on pourrait obtenir le même résultat en soustrayant l’adresse de la structure de l’adresse du champ à l’aide de pointeurs : `(char*)&(s.c) - (char*)&s`.
+Cette soustraction donne un entier représentant le décalage en octets du champ c par rapport au début de la structure.

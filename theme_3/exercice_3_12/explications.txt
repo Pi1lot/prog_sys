@@ -1,0 +1,10 @@
+Il utilise la fonction gets, qui est connue pour être dangereuse et obsolète.
+gets ne vérifie pas la taille du tampon dans lequel elle lit, ce qui peut provoquer des dépassements de mémoire et des failles de sécurité.
+Un programmeur expérimenté utiliserait fgets ou une autre fonction sûre pour limiter le nombre de caractères lus.
+
+Ensuite, le programme ne libère jamais la mémoire allouée avec malloc.
+La variable ligne est allouée une fois mais n’est jamais libérée, ce qui est une fuite de mémoire.
+Un programmeur plus expérimenté penserait à faire un free(ligne) à la fin.
+
+Enfin, il n’y a pas de vérification que l’allocation mémoire a réussi.
+Si malloc retourne NULL, le programme plantera lorsqu’il tentera de lire avec gets.

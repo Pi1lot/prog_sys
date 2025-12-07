@@ -1,0 +1,19 @@
+f1 : la variable val est un paramètre local, l’adresse &val est valide seulement à l’intérieur de la fonction.
+Retourner cette adresse crée un pointeur vers une variable locale qui sera détruite à la sortie de la fonction,
+ce qui provoque un comportement indéfini.
+
+f2 : tab est un tableau local à la fonction.
+Retourner tab signifie renvoyer un pointeur vers une zone de mémoire qui sera détruite à la sortie de la fonction.
+Cela provoque un comportement indéfini.
+
+f3 : p est un pointeur sur chaîne, mais printf utilise p directement au lieu de *p.
+Il faut écrire printf("%s\n", *p). Sinon, on affiche l’adresse du pointeur et non la chaîne.
+
+f4 : tab est un tableau global, mais le second for fait tab++ et modifie le pointeur global.
+C’est incorrect car tab n’est pas un pointeur modifiable sur un tableau global;
+cela provoque un comportement indéfini.
+
+f5 : sizeof(chaine) retourne la taille d’un pointeur (puisque chaine est un char*),
+pas la longueur réelle de la chaîne. De plus, la chaîne chaine est une chaîne littérale,
+qui est généralement stockée en mémoire en lecture seule;
+tenter de modifier ses caractères avec chaine[i] = '-' provoque un comportement indéfini.

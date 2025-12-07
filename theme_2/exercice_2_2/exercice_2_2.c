@@ -20,3 +20,4 @@ int main(int argc, char *argv[]) {
     printf("Occurrences '%c' : %d\n", target, count);
     return 0;
 }
+
